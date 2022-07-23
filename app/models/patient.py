@@ -2,31 +2,21 @@ import uuid
 from sqlalchemy.dialects.postgresql import UUID
 
 from app.database import database
-from app.models.base import BaseModel
+from app.models.base import BaseModel, BaseUserModel
 
 
-class PatientTable(BaseModel, database.Model):
+class PatientTable(BaseModel, BaseUserModel, database.Model):
     """Table responsible for interacting with the patients' table in the database"""
-    __tablename__ = 'patients'
+    __tablename__ = 'patient'
 
     id = database.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, nullable=False)
-    diagnostic_id = database.Column(UUID(as_uuid=True), database.ForeignKey('diagnostics.id'))
-    consultant_id = database.Column(UUID(as_uuid=True), database.ForeignKey('providers.id'))
+    diagnostic_id = database.Column(UUID(as_uuid=True), database.ForeignKey('diagnostic.id'))
+    consultant_id = database.Column(UUID(as_uuid=True), database.ForeignKey('provider.id'))
     registration_type_id = database.Column(UUID(as_uuid=True), database.ForeignKey('registration.id'))
     unit_id = database.Column(UUID(as_uuid=True), database.ForeignKey('unit.id'))
     service_area_id = database.Column(UUID(as_uuid=True), database.ForeignKey('service_area.id'))
     address = database.Column(UUID(as_uuid=True), database.ForeignKey('address.id'))
-    hospital_card_id = database.Column(database.String(30), nullable=False, unique=True, index=True)
-    title = database.Column(database.String(30), nullable=False)
-    first_name = database.Column(database.String(60), nullable=False)
-    middle_name = database.Column(database.String(60))
-    last_name = database.Column(database.String(60), nullable=False)
-    username = database.Column(database.String(100), nullable=False, unique=True)
-    email = database.Column(database.String(100), nullable=False, unique=True)
-    password = database.Column(database.String(), nullable=False)
-    gender = database.Column(database.String(30), nullable=False)
-    date_of_birth = database.Column(database.Date(), nullable=False)
-    phone_number = database.Column(database.Integer(), nullable=False, unique=True)
+    patient_hospital_id = database.Column(database.String(30), nullable=False, unique=True, index=True)
     religion = database.Column(database.String(60), nullable=False)
     occupation = database.Column(database.String(255), nullable=False)
     relationship_status = database.Column(database.String(100), nullable=False)

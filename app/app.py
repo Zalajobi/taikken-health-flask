@@ -7,6 +7,7 @@ from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 
 # Import models
+from app.models.patient import PatientTable
 
 # configure installed apps
 app = Flask(__name__)
