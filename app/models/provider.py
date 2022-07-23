@@ -1,5 +1,4 @@
 import uuid
-import os
 from sqlalchemy.dialects.postgresql import UUID
 
 from app.database import database
