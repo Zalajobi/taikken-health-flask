@@ -12,7 +12,6 @@ pyvenv.cfg
 .venv
 pip-selfcheck.json
 venv
-
 #ignore environment variables
-taikken.env
+.env
 
