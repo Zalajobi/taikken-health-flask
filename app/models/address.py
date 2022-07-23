@@ -11,7 +11,7 @@ class AddressTable(BaseModel, database.Model):
 
     id = database.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, nullable=False)
     patient_id = database.Column(UUID(as_uuid=True), database.ForeignKey('patient.id'))
-    # provider_id = database.Column(UUID(as_uuid=True), database.ForeignKey('provider.id'))
+    provider_id = database.Column(UUID(as_uuid=True), database.ForeignKey('provider.id'))
     country = database.Column(database.String(60), nullable=False)
     address = database.Column(database.Text(), nullable=False)
     city = database.Column(database.String(60), nullable=False)

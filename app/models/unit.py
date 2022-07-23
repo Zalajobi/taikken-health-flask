@@ -15,7 +15,7 @@ class UnitTable(BaseModel, database.Model):
 
     # Database Relationship
     # inbox = database.relationship('InboxTable', backref='unit', lazy=True, cascade="save-update")
-    # provider = database.relationship('ProviderTable', backref='unit', lazy=True, cascade="all,delete")
+    provider = database.relationship('ProviderTable', backref='unit', lazy=True, cascade="all,delete")
     patient = database.relationship('PatientTable', backref='unit', lazy=True, cascade="all,delete")
 
     def save_to_db(self):

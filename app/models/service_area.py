@@ -15,7 +15,7 @@ class ServiceAreaTable(BaseModel, database.Model):
 
     # Database Relationship
     # inbox = database.relationship('InboxTable', backref='service_area', lazy=True, cascade="save-update")
-    # provider = database.relationship('ProviderTable', backref='service_area', lazy=True, cascade="all,delete")
+    provider = database.relationship('ProviderTable', backref='service_area', lazy=True, cascade="all,delete")
     patient = database.relationship('PatientTable', backref='service_area', lazy=True, cascade="all,delete")
 
     def save_to_db(self):

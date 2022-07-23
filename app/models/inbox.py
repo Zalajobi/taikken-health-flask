@@ -10,7 +10,7 @@ class InboxTable(BaseModel, database.Model):
     __tablename__ = 'inbox'
 
     id = database.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, nullable=False)
-    # provider_recipient_id = database.Column(UUID(as_uuid=True), database.ForeignKey('provider.id'))
+    provider_recipient_id = database.Column(UUID(as_uuid=True), database.ForeignKey('provider.id'))
     patient_recipient_id = database.Column(UUID(as_uuid=True), database.ForeignKey('patient.id'))
     # service_area_id = database.Column(UUID(as_uuid=True), database.ForeignKey('service_area.id'))
     # role_id = database.Column(UUID(as_uuid=True), database.ForeignKey('role.id'))
