@@ -12,9 +12,9 @@ class RoleTable(BaseModel, database.Model):
     id = database.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, nullable=False)
     name = database.Column(database.String(), nullable=False)
     description = database.Column(database.Text(), nullable=False)
-    #
-    # # Database Relationship
-    # inbox = database.relationship('InboxTable', backref='role', lazy=True, cascade="save-update")
+
+    # Database Relationship
+    inbox = database.relationship('InboxTable', backref='role', lazy=True, cascade="save-update")
     provider = database.relationship('ProviderTable', backref='role', lazy=True, cascade="all,delete")
 
     def save_to_db(self):

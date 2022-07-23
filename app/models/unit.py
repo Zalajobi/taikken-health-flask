@@ -14,7 +14,7 @@ class UnitTable(BaseModel, database.Model):
     description = database.Column(database.Text(), nullable=False)
 
     # Database Relationship
-    # inbox = database.relationship('InboxTable', backref='unit', lazy=True, cascade="save-update")
+    inbox = database.relationship('InboxTable', backref='unit', lazy=True, cascade="save-update")
     provider = database.relationship('ProviderTable', backref='unit', lazy=True, cascade="all,delete")
     patient = database.relationship('PatientTable', backref='unit', lazy=True, cascade="all,delete")
 

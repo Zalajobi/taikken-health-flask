@@ -14,7 +14,7 @@ class ServiceAreaTable(BaseModel, database.Model):
     description = database.Column(database.Text(), nullable=False)
 
     # Database Relationship
-    # inbox = database.relationship('InboxTable', backref='service_area', lazy=True, cascade="save-update")
+    inbox = database.relationship('InboxTable', backref='service_area', lazy=True, cascade="save-update")
     provider = database.relationship('ProviderTable', backref='service_area', lazy=True, cascade="all,delete")
     patient = database.relationship('PatientTable', backref='service_area', lazy=True, cascade="all,delete")
 
