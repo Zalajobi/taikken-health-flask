@@ -40,4 +40,4 @@ class ProviderTable(BaseModel, BaseUserModel, database.Model):
         return cls.query.filter_by(id=id).first()
 
     def __repr__(self):
-        return '<Provider Username {}>'.format(self.username)
+        return '<ProviderTable {}>'.format(self.username)

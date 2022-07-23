@@ -27,6 +27,11 @@ class PatientTable(BaseModel, BaseUserModel, database.Model):
     next_of_kin_gender = database.Column(database.String(30), nullable=False)
     next_of_kin_relationship = database.Column(database.String(30), nullable=False)
 
+    # Database relationships
+    inbox = database.relationship('InboxTable', backref='provider', lazy=True, cascade="all,delete")
+    diagnostic = database.relationship('DiagnosticTable', backref='provider', lazy=True, cascade="all,delete")
+
+
     def save_to_db(self):
         database.session.add(self)
         database.session.commit()
@@ -44,4 +49,4 @@ class PatientTable(BaseModel, BaseUserModel, database.Model):
         return cls.query.filter_by(id=id).first()
 
     def __repr__(self):
-        return '<Patient Username {}>'.format(self.username)
+        return '<PatientTable {}>'.format(self.username)
