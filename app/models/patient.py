@@ -12,7 +12,7 @@ class PatientTable(BaseModel, BaseUserModel, database.Model):
     id = database.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, nullable=False)
     diagnostic_id = database.Column(UUID(as_uuid=True), database.ForeignKey('diagnostic.id'))
     consultant_id = database.Column(UUID(as_uuid=True), database.ForeignKey('provider.id'))
-    registration_type_id = database.Column(UUID(as_uuid=True), database.ForeignKey('registration.id'))
+    registration_id = database.Column(UUID(as_uuid=True), database.ForeignKey('registration.id'))
     unit_id = database.Column(UUID(as_uuid=True), database.ForeignKey('unit.id'))
     service_area_id = database.Column(UUID(as_uuid=True), database.ForeignKey('service_area.id'))
     address = database.Column(UUID(as_uuid=True), database.ForeignKey('address.id'))

@@ -5,14 +5,16 @@ from app.database import database
 from app.models.base import BaseModel
 
 
-class AllergyTable(BaseModel):
-    """Table responsible for interacting with the allergy table in the database"""
-    __tablename__ = 'allergy'
+class RegistrationTable(BaseModel):
+    """Table responsible for interacting with the patients' table in the database"""
+    __tablename__ = 'registration'
 
     id = database.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, nullable=False)
-    patient_id = database.Column(UUID(as_uuid=True), database.ForeignKey('patient.id'))
     name = database.Column(database.String(), nullable=False)
     description = database.Column(database.Text(), nullable=False)
+
+    # Database Relation(s)
+    patient = database.relationship('PatientTable', backref='relationship', lazy=True, cascade="save-update")
 
     def save_to_db(self):
         database.session.add(self)
@@ -23,4 +25,4 @@ class AllergyTable(BaseModel):
         return cls.query.filter_by(id=id).first()
 
     def __repr__(self):
-        return '<AllergyTable {}>'.format(self.username)
+        return '<RegistrationTable {}>'.format(self.username)

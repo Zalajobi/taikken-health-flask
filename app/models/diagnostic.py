@@ -2,10 +2,10 @@ import uuid
 from sqlalchemy.dialects.postgresql import UUID
 
 from app.database import database
-from app.models.base import BaseModel, BaseUserModel
+from app.models.base import BaseModel
 
 
-class DiagnosticTable(BaseModel, BaseUserModel, database.Model):
+class DiagnosticTable(BaseModel):
     """Table responsible for interacting with the diagnostic table in the database"""
     __tablename__ = 'diagnostic'
 
