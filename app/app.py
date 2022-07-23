@@ -2,6 +2,8 @@ import os
 from flask import Flask
 from dotenv import load_dotenv
 from flask_migrate import Migrate
+
+from app.auth import auth_blueprint, user_blueprint
 from app.database import database
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
@@ -21,8 +23,12 @@ app.config['PROPAGATE_EXCEPTIONS'] = True
 app.secret_key = os.getenv('SECRET_KEY')
 app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')
 app.config["SESSION_PERMANENT"] = False
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
+# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 app.config["SESSION_TYPE"] = "filesystem"
+
+#Blueprints
+app.register_blueprint(auth_blueprint)
+app.register_blueprint(user_blueprint)
 
 
 @app.route('/')
