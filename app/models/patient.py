@@ -43,4 +43,4 @@ class PatientTable(BaseModel, BaseUserModel, database.Model):
         return cls.query.filter_by(id=id).first()
 
     def __repr__(self):
-        return '<Username {}>'.format(self.username)
+        return '<Patient Username {}>'.format(self.username)

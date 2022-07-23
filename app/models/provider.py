@@ -1,5 +1,6 @@
 import uuid
 from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import backref
 
 from app.database import database
 from app.models.base import BaseModel, BaseUserModel
@@ -18,6 +19,10 @@ class ProviderTable(BaseModel, BaseUserModel, database.Model):
     is_consultant = database.Column(database.Boolean(), nullable=False, default=False)
     specialty = database.Column(database.String(100))
 
+    # Database relationships
+    inbox = database.relationship('InboxTable', backref='provider', lazy=True, cascade="all,delete")
+    consultant = database.relationship('PatientTable', backref='provider', lazy=True)
+
     def save_to_db(self):
         database.session.add(self)
         database.session.commit()
@@ -35,4 +40,4 @@ class ProviderTable(BaseModel, BaseUserModel, database.Model):
         return cls.query.filter_by(id=id).first()
 
     def __repr__(self):
-        return '<Username {}>'.format(self.username)
+        return '<Provider Username {}>'.format(self.username)

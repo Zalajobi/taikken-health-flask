@@ -5,7 +5,7 @@ from app.database import database
 from app.models.base import BaseModel, BaseUserModel
 
 
-class PatientTable(BaseModel, database.Model):
+class InboxTable(BaseModel, database.Model):
     """Table responsible for interacting with the inbox table in the database"""
     __tablename__ = 'inbox'
 
