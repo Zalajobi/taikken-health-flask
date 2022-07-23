@@ -1,6 +1,5 @@
 import uuid
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import backref
 
 from app.database import database
 from app.models.base import BaseModel, BaseUserModel
@@ -15,6 +14,7 @@ class ProviderTable(BaseModel, BaseUserModel, database.Model):
     unit_id = database.Column(UUID(as_uuid=True), database.ForeignKey('unit.id'))
     service_area_id = database.Column(UUID(as_uuid=True), database.ForeignKey('service_area.id'))
     role_id = database.Column(UUID(as_uuid=True), database.ForeignKey('role.id'))
+    address_id = database.Column(UUID(as_uuid=True), database.ForeignKey('address.id'))
     staff_id = database.Column(database.String(30), nullable=False, unique=True, index=True)
     is_consultant = database.Column(database.Boolean(), nullable=False, default=False)
     specialty = database.Column(database.String(100))

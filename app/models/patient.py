@@ -16,6 +16,7 @@ class PatientTable(BaseModel, BaseUserModel, database.Model):
     unit_id = database.Column(UUID(as_uuid=True), database.ForeignKey('unit.id'))
     service_area_id = database.Column(UUID(as_uuid=True), database.ForeignKey('service_area.id'))
     address = database.Column(UUID(as_uuid=True), database.ForeignKey('address.id'))
+    address_id = database.Column(UUID(as_uuid=True), database.ForeignKey('address.id'))
     patient_hospital_id = database.Column(database.String(30), nullable=False, unique=True, index=True)
     religion = database.Column(database.String(60), nullable=False)
     occupation = database.Column(database.String(255), nullable=False)
