@@ -5,7 +5,7 @@ from app.database import database
 from app.models.base import BaseModel
 
 
-class ServiceAreaTable(BaseModel):
+class ServiceAreaTable(BaseModel, database.Model):
     """Table responsible for interacting with the service_area table in the database"""
     __tablename__ = 'service_area'
 
@@ -14,9 +14,9 @@ class ServiceAreaTable(BaseModel):
     description = database.Column(database.Text(), nullable=False)
 
     # Database Relationship
-    inbox = database.relationship('InboxTable', backref='department', lazy=True, cascade="save-update")
-    provider = database.relationship('ProviderTable', backref='provider', lazy=True, cascade="all,delete")
-    patient = database.relationship('PatientTable', backref='patient', lazy=True, cascade="all,delete")
+    # inbox = database.relationship('InboxTable', backref='service_area', lazy=True, cascade="save-update")
+    # provider = database.relationship('ProviderTable', backref='service_area', lazy=True, cascade="all,delete")
+    patient = database.relationship('PatientTable', backref='service_area', lazy=True, cascade="all,delete")
 
     def save_to_db(self):
         database.session.add(self)

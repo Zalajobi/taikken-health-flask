@@ -10,12 +10,10 @@ class PatientTable(BaseModel, BaseUserModel, database.Model):
     __tablename__ = 'patient'
 
     id = database.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, nullable=False)
-    diagnostic_id = database.Column(UUID(as_uuid=True), database.ForeignKey('diagnostic.id'))
     consultant_id = database.Column(UUID(as_uuid=True), database.ForeignKey('provider.id'))
     registration_id = database.Column(UUID(as_uuid=True), database.ForeignKey('registration.id'))
     unit_id = database.Column(UUID(as_uuid=True), database.ForeignKey('unit.id'))
     service_area_id = database.Column(UUID(as_uuid=True), database.ForeignKey('service_area.id'))
-    address = database.Column(UUID(as_uuid=True), database.ForeignKey('address.id'))
     address_id = database.Column(UUID(as_uuid=True), database.ForeignKey('address.id'))
     patient_hospital_id = database.Column(database.String(30), nullable=False, unique=True, index=True)
     religion = database.Column(database.String(60), nullable=False)
@@ -26,12 +24,11 @@ class PatientTable(BaseModel, BaseUserModel, database.Model):
     next_of_kin_phone = database.Column(database.Integer(), nullable=False)
     next_of_kin_gender = database.Column(database.String(30), nullable=False)
     next_of_kin_relationship = database.Column(database.String(30), nullable=False)
-
-    # Database relationships
+    #
+    # # Database relationships
     inbox = database.relationship('InboxTable', backref='patient', lazy=True, cascade="all,delete")
-    diagnostic = database.relationship('DiagnosticTable', backref='provider', lazy=True, cascade="all,delete")
-    allergy = database.relationship('AllergyTable', backref='provider', lazy=True, cascade="all,delete")
-
+    diagnostic = database.relationship('DiagnosticTable', backref='patient', lazy=True, cascade="all,delete")
+    allergy = database.relationship('AllergyTable', backref='patient', lazy=True, cascade="all,delete")
 
     def save_to_db(self):
         database.session.add(self)

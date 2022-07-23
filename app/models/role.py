@@ -5,18 +5,17 @@ from app.database import database
 from app.models.base import BaseModel
 
 
-class RoleTable(BaseModel):
+class RoleTable(BaseModel, database.Model):
     """Table responsible for interacting with the role table in the database"""
     __tablename__ = 'role'
 
     id = database.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, nullable=False)
-    name = database.Column(database.String(), nullable=False)
-    description = database.Column(database.Text(), nullable=False)
-
-    # Database Relationship
-    inbox = database.relationship('InboxTable', backref='department', lazy=True, cascade="save-update")
-    provider = database.relationship('ProviderTable', backref='provider', lazy=True, cascade="all,delete")
-    patient = database.relationship('PatientTable', backref='patient', lazy=True, cascade="all,delete")
+    # name = database.Column(database.String(), nullable=False)
+    # description = database.Column(database.Text(), nullable=False)
+    #
+    # # Database Relationship
+    # inbox = database.relationship('InboxTable', backref='role', lazy=True, cascade="save-update")
+    # provider = database.relationship('ProviderTable', backref='role', lazy=True, cascade="all,delete")
 
     def save_to_db(self):
         database.session.add(self)

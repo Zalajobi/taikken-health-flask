@@ -5,7 +5,7 @@ from app.database import database
 from app.models.base import BaseModel
 
 
-class DiagnosticTable(BaseModel):
+class DiagnosticTable(BaseModel, database.Model):
     """Table responsible for interacting with the diagnostic table in the database"""
     __tablename__ = 'diagnostic'
 

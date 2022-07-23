@@ -5,7 +5,7 @@ from app.database import database
 from app.models.base import BaseModel
 
 
-class AllergyTable(BaseModel):
+class AllergyTable(BaseModel, database.Model):
     """Table responsible for interacting with the allergy table in the database"""
     __tablename__ = 'allergy'
 
