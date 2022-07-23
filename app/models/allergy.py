@@ -23,4 +23,4 @@ class AllergyTable(BaseModel):
         return cls.query.filter_by(id=id).first()
 
     def __repr__(self):
-        return '<AllergyTable {}>'.format(self.username)
+        return '<AllergyTable {}>'.format(self.id)

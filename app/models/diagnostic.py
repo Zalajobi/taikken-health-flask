@@ -23,4 +23,4 @@ class DiagnosticTable(BaseModel):
         return cls.query.filter_by(id=id).first()
 
     def __repr__(self):
-        return '<DiagnosticTable {}>'.format(self.username)
+        return '<DiagnosticTable {}>'.format(self.id)

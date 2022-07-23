@@ -28,7 +28,7 @@ class PatientTable(BaseModel, BaseUserModel, database.Model):
     next_of_kin_relationship = database.Column(database.String(30), nullable=False)
 
     # Database relationships
-    inbox = database.relationship('InboxTable', backref='provider', lazy=True, cascade="all,delete")
+    inbox = database.relationship('InboxTable', backref='patient', lazy=True, cascade="all,delete")
     diagnostic = database.relationship('DiagnosticTable', backref='provider', lazy=True, cascade="all,delete")
     allergy = database.relationship('AllergyTable', backref='provider', lazy=True, cascade="all,delete")
 
