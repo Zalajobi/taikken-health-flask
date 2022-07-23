@@ -5,14 +5,14 @@ from app.database import database
 from app.models.base import BaseModel, BaseUserModel
 
 
-class DiagnosticTable(BaseModel, BaseUserModel, database.Model):
-    """Table responsible for interacting with the diagnostic table in the database"""
-    __tablename__ = 'diagnostic'
+class AllergyTable(BaseModel, BaseUserModel, database.Model):
+    """Table responsible for interacting with the allergy table in the database"""
+    __tablename__ = 'allergy'
 
     id = database.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, nullable=False)
     patient_id = database.Column(UUID(as_uuid=True), database.ForeignKey('patient.id'))
-    summary = database.Column(database.Text(), nullable=False)
-    medications = database.Column(database.String(), nullable=False)
+    name = database.Column(database.String(), nullable=False)
+    description = database.Column(database.Text(), nullable=False)
 
     def save_to_db(self):
         database.session.add(self)
@@ -23,4 +23,4 @@ class DiagnosticTable(BaseModel, BaseUserModel, database.Model):
         return cls.query.filter_by(id=id).first()
 
     def __repr__(self):
-        return '<DiagnosticTable {}>'.format(self.username)
+        return '<AllergyTable {}>'.format(self.username)

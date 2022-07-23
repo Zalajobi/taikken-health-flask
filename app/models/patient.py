@@ -30,6 +30,7 @@ class PatientTable(BaseModel, BaseUserModel, database.Model):
     # Database relationships
     inbox = database.relationship('InboxTable', backref='provider', lazy=True, cascade="all,delete")
     diagnostic = database.relationship('DiagnosticTable', backref='provider', lazy=True, cascade="all,delete")
+    allergy = database.relationship('AllergyTable', backref='provider', lazy=True, cascade="all,delete")
 
 
     def save_to_db(self):
