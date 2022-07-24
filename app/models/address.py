@@ -13,6 +13,7 @@ class AddressTable(BaseModel, database.Model):
     patient_id = database.Column(UUID(as_uuid=True), database.ForeignKey('patient.id'))
     provider_id = database.Column(UUID(as_uuid=True), database.ForeignKey('provider.id'))
     country = database.Column(database.String(60), nullable=False)
+    state = database.Column(database.String(60), nullable=False)
     address = database.Column(database.Text(), nullable=False)
     city = database.Column(database.String(60), nullable=False)
     zip_code = database.Column(database.Integer(), nullable=False)
