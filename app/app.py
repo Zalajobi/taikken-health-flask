@@ -3,6 +3,7 @@ from flask import Flask
 from dotenv import load_dotenv
 from flask_migrate import Migrate
 
+from app.admin import admin_blueprint
 from app.auth import auth_blueprint, user_blueprint
 from app.database import database
 from flask_jwt_extended import JWTManager
@@ -29,6 +30,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 #Blueprints
 app.register_blueprint(auth_blueprint)
 app.register_blueprint(user_blueprint)
+app.register_blueprint(admin_blueprint)
 
 
 @app.route('/')
