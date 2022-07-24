@@ -46,5 +46,9 @@ class PatientTable(BaseModel, BaseUserModel, database.Model):
     def find_by_id(cls, id):
         return cls.query.filter_by(id=id).first()
 
+    @classmethod
+    def find_all_by_consultant(cls, consultant_id):
+        return cls.query.filter_by(consultant_id=consultant_id).all()
+
     def __repr__(self):
         return '<PatientTable {}>'.format(self.username)

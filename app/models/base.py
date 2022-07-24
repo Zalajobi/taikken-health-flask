@@ -25,5 +25,6 @@ class BaseUserModel:
     password = database.Column(database.String(), nullable=False)
     gender = database.Column(database.String(30), nullable=False)
     date_of_birth = database.Column(database.Date(), nullable=False)
-    phone_number = database.Column(database.Integer(), nullable=False, unique=True)
+    # phone_number = database.Column(database.Integer(), nullable=False, unique=True)
+    phone_number = database.Column(database.String(), nullable=False)
     profile_image_url = database.Column(database.String(), nullable=False, default=os.getenv('DEFAULT_PROFILE_IMG'))
