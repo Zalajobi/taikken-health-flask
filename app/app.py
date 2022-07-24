@@ -8,6 +8,7 @@ from app.auth import auth_blueprint, user_blueprint
 from app.database import database
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
+from config import DevelopmentConfig
 
 # configure installed apps
 app = Flask(__name__)
@@ -18,14 +19,8 @@ load_dotenv()
 database.init_app(app)
 
 # APP CONFIGS
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['PROPAGATE_EXCEPTIONS'] = True
 app.secret_key = os.getenv('SECRET_KEY')
-app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')
-app.config["SESSION_PERMANENT"] = False
-# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
-app.config["SESSION_TYPE"] = "filesystem"
+app.config.from_object(DevelopmentConfig)
 
 #Blueprints
 app.register_blueprint(auth_blueprint)
