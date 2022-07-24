@@ -3,11 +3,14 @@ from flask import Flask
 from dotenv import load_dotenv
 from flask_migrate import Migrate
 
+from app import RegistrationTable
 from app.admin import admin_blueprint
 from app.auth import auth_blueprint, user_blueprint
 from app.database import database
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
+
+from app.models.enum_static import REGISTRATION
 from config import DevelopmentConfig
 
 # configure installed apps

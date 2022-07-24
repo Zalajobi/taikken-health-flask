@@ -60,6 +60,11 @@ class HOSPITAL_DEPARTMENT(enum.Enum):
     ACQUISITIONS = "Acquisitions"
 
 
+class REGISTRATION(enum.Enum):
+    FAMILY_CARD = "Family Card"
+    PERSONAL_CARD = "Personal Card"
+
+
 class HOSPITAL_UNIT(enum.Enum):
     PATHOLOGY = "Pathology"
     NEUROSURGERY = "Neurosurgery"
